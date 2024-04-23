@@ -1,0 +1,12 @@
+<module>
+
+    <register-font family="SegoeUIBold"
+                   source="templates/invoice/fonts/SegoeUIBold.ttf"></register-font>
+    <register-font family="SegoeUISemibold"
+                   source="templates/invoice/fonts/SegoeUISemiBold.ttf"></register-font>
+    <register-font family="SegoeUIRegular"
+                   source="templates/invoice/fonts/SegoeUIRegular.ttf"></register-font>
+    <register-font family="SegoeUILight"
+                   source="templates/invoice/fonts/SegoeUILight.ttf"></register-font>
+
+</module>

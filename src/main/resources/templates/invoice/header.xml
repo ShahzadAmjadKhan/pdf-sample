@@ -1,0 +1,30 @@
+<header>
+<span>
+<table widths="20,40,40" padding-top="10" padding-bottom="0"
+               padding-left="10" padding-right="10" border-color="#A8A8A8" style="spacing-after:15pt;">
+
+        <tr>
+            <!-- <td colspan="4"><image source="src\\main\\resources\\templates\\invoice\\logo.png"/></td>-->
+            <td padding-left="10"><image height="100"  source = "${headerLogo}" halign="left" valign="top"/></td>
+            <td style="text-align:left;" halign="left"><b>${companyName}</b></td>
+            <td halign="right"><b>Jill Smith</b><br/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:left;" halign="left" >123 Baker Street<br/></td>
+            <td style="text-align:right;" halign="right" >Employee ID: 16<br/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:left;" halign="left">Nelson, BC XOX OXO<br/></td>
+            <td style="text-align:right;" halign="right">123 Banff Avenue<br/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align:right;" halign="right">Banff, AB XOX OXO<br/></td>
+        </tr>
+
+</table>
+</span>
+</header>

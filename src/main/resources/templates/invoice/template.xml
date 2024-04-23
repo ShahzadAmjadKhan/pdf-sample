@@ -1,0 +1,8 @@
+<document size="A4" margin-left="10" margin-right="10" margin-top="25" margin-bottom="25">
+
+    <import source="templates/invoice/fonts.xml"/>
+
+    <import source="templates/invoice/header.xml"/>
+
+
+</document>
