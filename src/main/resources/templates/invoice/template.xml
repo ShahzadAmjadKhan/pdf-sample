@@ -3,6 +3,8 @@
     <import source="templates/invoice/fonts.xml"/>
 
     <import source="templates/invoice/header.xml"/>
+    
+    <import source="templates/invoice/content.xml"/>
 
 
 </document>

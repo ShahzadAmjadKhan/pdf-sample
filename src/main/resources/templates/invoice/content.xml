@@ -1,0 +1,88 @@
+<span>
+<table widths="50,50" bgcolor="#C0C0C0" border-color="#A8A8A8">
+	<tr padding-bottom="7">
+		<td halign="left"  valign="middle">${payPeriod}</td>
+    	<td halign="right" valign="middle">${payDate}</td>
+	</tr>
+</table>
+<table widths="20,16,16,16,16,16" bgcolor="#E6E6E6" border-color="#A8A8A8">
+	<tr padding-bottom="7">
+		<td halign="left" valign="middle"><b>Income</b></td>
+    	<td halign="right" valign="middle"><b>This Period</b></td>
+    	<td halign="right" valign="middle"><b>Year to Date</b></td>
+    	<td halign="left" valign="middle"><b>Deductions</b></td>
+    	<td halign="right" valign="middle"><b>Current Total</b></td>
+    	<td halign="right" valign="middle"><b>Year to Date</b></td>
+	</tr>
+</table>
+
+<table widths="20,16,16,16,16,16" bgcolor="#FFFFFF" border-color="#A8A8A8">
+
+	<foreach loop-variable="entry" sequence="${entriesList}">
+		 <if cond="${entry.income != null}">
+			<tr padding-bottom="7">
+				<td halign="left" valign="middle">${entry.income}</td>
+				<if cond="${entry.thisPeriod != null}">
+					<td halign="right" valign="middle">${entry.thisPeriod}</td>
+				</if>
+				<else>
+					<td halign="right" valign="middle"></td>
+				</else>
+				<if cond="${entry.yearToDate != null}">
+					<td halign="right" valign="middle">${entry.yearToDate}</td>
+				</if>
+				<else>
+					<td halign="right" valign="middle"></td>
+				</else>
+				<if cond="${entry.deductions != null}">
+					<td halign="left" valign="middle">${entry.deductions}</td>
+				</if>
+				<else>
+					<td halign="left" valign="middle"></td>
+				</else>
+				<if cond="${entry.currentTotal != null}">
+					<td halign="right" valign="middle">${entry.currentTotal}</td>
+				</if>
+				<else>
+					<td halign="right" valign="middle"></td>
+				</else>
+				<if cond="${entry.yearToDate_ != null}">
+					<td halign="right" valign="middle">${entry.yearToDate_}</td>
+				</if>
+				<else>
+					<td halign="right" valign="middle"></td>
+				</else>
+			</tr>
+		</if>	
+	</foreach>
+</table>
+
+<br></br>
+<br></br>
+
+<p>----------------------------------------------------------------</p>
+<p><b>Taxable Benefits</b></p>
+<br></br>
+<table widths="20,16,16,16,16,16" bgcolor="#FFFFFF" border-color="#A8A8A8">
+	<foreach loop-variable="benefit" sequence="${taxableBenfitsList}">
+		<tr padding-bottom="7">
+			<td halign="left" valign="middle"><b>${benefit.name}</b></td>
+			<td halign="right" valign="middle">${benefit.thisPeriod}</td>
+			<td halign="right" valign="middle">${benefit.yearToDate}</td>
+		</tr>
+	</foreach>	
+</table>
+
+<br></br>
+
+<table widths="20,16,16,16,16,16" bgcolor="#E6E6E6" border-color="#A8A8A8">
+	<tr padding-bottom="7">
+		<td halign="left" valign="middle"></td>
+    	<td halign="right" valign="middle"></td>
+    	<td halign="right" valign="middle"></td>
+    	<td halign="left" valign="middle" colspan="2"><b>Current Net Income</b></td>
+    	<td halign="right" valign="middle"><b>${currentNetIncome}</b></td>
+	</tr>
+</table>
+
+</span>
