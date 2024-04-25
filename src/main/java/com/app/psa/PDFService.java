@@ -1,14 +1,15 @@
 package com.app.psa;
 
-import java.io.ByteArrayOutputStream;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,6 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
-
 import org.springframework.stereotype.Service;
 import org.ujac.print.DocumentPrinter;
 import org.ujac.util.io.ClassPathResourceLoader;
@@ -25,32 +25,30 @@ import org.ujac.util.io.ClassPathResourceLoader;
 @Service
 public class PDFService {
 
-	/*private final Resource resource;
+	private final Resource resource;
+	
+	private static final SimpleDateFormat filenameDate = new SimpleDateFormat("yyyyMMddHHmmss");
 	
 	public PDFService(@Value("${invoice.template.path}") Resource resource) {
-		resource = new File("").get;
 		this.resource = resource;
-	}*/
+		
+	}
     
     public byte[] getPDF() throws Exception {
     	
-    	File initialFile = new File("src\\main\\resources\\templates\\invoice\\template.xml");
-        InputStream targetStream = new FileInputStream(initialFile);
+    	String outputFileName = getOutputDir();
         byte[] writtenData = null;
-        
-    	try (InputStream templateStream = targetStream;
-                OutputStream output = new FileOutputStream("C:\\temp\\20240418\\1.pdf")) {
+    	try (InputStream templateStream = resource.getInputStream();
+                OutputStream output = new FileOutputStream(outputFileName)) {
 
             DocumentPrinter documentPrinter = prepareUjacDocumentPrinter(
                     templateStream, getTemplateData());
 
             documentPrinter.printDocument(output);
             
-            
-            
-            File file = new File("C:\\temp\\20240418\\1.pdf");
+            File file = new File(outputFileName);
             writtenData = FileUtils.readFileToByteArray(file);
-            
+            file.delete();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +56,6 @@ public class PDFService {
     	
     	return writtenData;
     }
-    
     
     public DocumentPrinter prepareUjacDocumentPrinter(InputStream templateStream,
             Map<String, Object> templateData) throws IOException {
@@ -68,6 +65,13 @@ public class PDFService {
     	documentPrinter.setTranslateEscapeSequences(false);
 
     	return documentPrinter;
+    }
+    
+    private String getOutputDir() {
+    	String parentDirectory = System.getProperty("java.io.tmpdir") + File.separator;
+    	String outputFileName = parentDirectory+filenameDate.format(new Date())+".pdf";
+    	System.out.println(outputFileName);
+    	return outputFileName;
     }
     
     private Map<String, Object> getTemplateData() {
@@ -86,14 +90,12 @@ public class PDFService {
     
     public byte[] getLogoContent() {
         String imageUrl = "src\\main\\resources\\templates\\invoice\\logo.png";
-
-        try {
-        	File initialFile = new File(imageUrl);
-        	InputStream targetStream = new FileInputStream(initialFile);
+        File initialFile = new File(imageUrl);
+        try (InputStream targetStream = new FileInputStream(initialFile);) {
         	return targetStream.readAllBytes();
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
         return null;
     }
     
